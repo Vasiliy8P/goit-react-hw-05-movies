@@ -1,19 +1,17 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { Formik, Form, Field } from 'formik';
 import { GetMovieBySearchQuery } from '../../Services/Api';
 
 
 const Movies = () => {
     const [movieBySearchQuery, setMovieBySearchQuery] = useState([]);
-    const [searchQuery, setSearchQuery] = useState('');
-
-    const handleSubmit = (values, actions) => {
-        setSearchQuery(values.value)
-    }
+    const [searchParams, setSearchParams] = useSearchParams();
+    const location = useLocation();
+    const searchQuery = searchParams.get("query") ?? "";
 
     useEffect(() => {
-        if (searchQuery === '') {
+        if (searchQuery === "") {
             return
         }
 
@@ -21,8 +19,13 @@ const Movies = () => {
             .then(movie => {
                 setMovieBySearchQuery(movie.results)
             })
-            .catch(error => console.log(error));        
-    }, [searchQuery])
+            .catch(error => console.log(error));
+    }, [searchQuery]);
+
+    const handleSubmit = (values, { resetForm }) => {
+        setSearchParams({ query: values.value });
+        resetForm();
+    }    
 
     return (
         <div>
@@ -47,7 +50,7 @@ const Movies = () => {
             <ul>
                 {movieBySearchQuery.map(({ id, title }) => (
                     <li key={id}>
-                        <Link to={`/movies/${id}`}>{title}</Link>
+                        <Link to={`/movies/${id}`} state={{ from: location }}>{title}</Link>
                     </li>
                 ))}
             </ul>
