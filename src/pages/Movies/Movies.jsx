@@ -23,7 +23,8 @@ const Movies = () => {
     }, [searchQuery]);
 
     const handleSubmit = (values, { resetForm }) => {
-        setSearchParams({ query: values.value });
+        const nextParams = values.value !== "" ? { query: values.value } : {};
+        setSearchParams(nextParams);
         resetForm();
     }    
 

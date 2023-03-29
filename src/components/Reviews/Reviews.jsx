@@ -8,8 +8,6 @@ const Reviews = () => {
     const [status, setStatus] = useState('idle')
     const { movieId } = useParams();
 
-    console.log('reviews:', reviewsMovie);
-
     useEffect(() => {
         setStatus('panding')
 

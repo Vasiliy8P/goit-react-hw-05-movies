@@ -23,13 +23,16 @@ const Cast = () => {
         <div>
             {status === 'panding'
                 ? <Loader />
-                : (<div>
-                    <ul>
-                        {movieCast.map(actor => (
-                            <li key={actor.id}>{actor.name}</li>
+                : (<ul style={{ listStyle: "none" }}>
+                        {movieCast.map(({id, name, character, profile_path}) => (
+                            <li key={id}>
+                                <img src={profile_path && `https://image.tmdb.org/t/p/w500${profile_path}`} alt={name} width="120" />
+                                <p><b>{name}</b></p>
+                                <p>Character: {character}</p>
+
+                            </li>
                         ))}
-                    </ul>
-                </div>)
+                    </ul>)
             }
         </div>        
     )
