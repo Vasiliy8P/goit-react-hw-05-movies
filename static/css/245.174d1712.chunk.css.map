@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/245.174d1712.chunk.css","mappings":"AAAA,WACI,YAAa,CACb,QACJ,CAEA,QACI,YAAa,CACb,QAAS,CACT,eAAgB,CAChB,SACJ","sources":["pages/MovieDetails/MovieDetails.css"],"sourcesContent":[".CardMovie{\n    display: flex;\n    gap: 20px;\n}\n\n.Genres{\n    display: flex;\n    gap: 10px;\n    list-style: none;\n    padding: 0;\n}"],"names":[],"sourceRoot":""}
